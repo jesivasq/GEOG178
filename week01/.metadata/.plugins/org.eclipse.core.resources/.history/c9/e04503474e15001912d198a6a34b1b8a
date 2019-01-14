@@ -1,0 +1,30 @@
+package test;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+		// Describe what a for loop and if statement is 
+		// in your own words
+		
+		
+		
+		// Compute the Euclidean distance between two points
+		// in a 2D Cartesian coordinate sytem using
+		// Math.sqrt() and Math.pow().
+		
+		
+		
+		
+		// Define a polyline and a polygon and compute the
+		// distance between both.
+		// Optional: check whether the polygon is closed
+		
+		
+		
+
+	}
+
+}

@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+C:\Users\Ada\Documents\19-01_winter\GEOG178\week01\.metadata\.plugins\org.eclipse.jdt.core
+3271193799.index

@@ -80,36 +80,41 @@ public class Test {
 		distMin = Math.min(dist1, dist2);
 
 		dist1 = Math.sqrt( Math.pow(lineX1 - polygonX3, 2) + Math.pow(lineY1 - polygonY3, 2) );
-		dist2 = Math.sqrt( Math.pow(lineX1 - polygonX4, 2) + Math.pow(lineY1 - polygonY4, 2) );
-		distMin = Math.min(dist1, dist2);
+		distMin = Math.min(dist1, distMin);
+		dist1 = Math.sqrt( Math.pow(lineX1 - polygonX4, 2) + Math.pow(lineY1 - polygonY4, 2) );
+		distMin = Math.min(dist1, distMin);
 		
 		// next, look at polyline's point 2 and compare the distance to each point in the polygon
 		dist1 = Math.sqrt( Math.pow(lineX2 - polygonX1, 2) + Math.pow(lineY2 - polygonY1, 2) );
-		dist2 = Math.sqrt( Math.pow(lineX2 - polygonX2, 2) + Math.pow(lineY2 - polygonY2, 2) );
-		distMin = Math.min(dist1, dist2);
+		distMin = Math.min(dist1, distMin);
+		dist1 = Math.sqrt( Math.pow(lineX2 - polygonX2, 2) + Math.pow(lineY2 - polygonY2, 2) );
+		distMin = Math.min(dist1, distMin);
 
 		dist1 = Math.sqrt( Math.pow(lineX2 - polygonX3, 2) + Math.pow(lineY2 - polygonY3, 2) );
-		dist2 = Math.sqrt( Math.pow(lineX2 - polygonX4, 2) + Math.pow(lineY2 - polygonY4, 2) );
-		distMin = Math.min(dist1, dist2);
+		distMin = Math.min(dist1, distMin);
+		dist1 = Math.sqrt( Math.pow(lineX2 - polygonX4, 2) + Math.pow(lineY2 - polygonY4, 2) );
+		distMin = Math.min(dist1, distMin);
 		
 
 		// finally, look at polyline's point 3 and compare the distance to each point in the polygon
 		dist1 = Math.sqrt( Math.pow(lineX3 - polygonX1, 2) + Math.pow(lineY3 - polygonY1, 2) );
-		dist2 = Math.sqrt( Math.pow(lineX3 - polygonX2, 2) + Math.pow(lineY3 - polygonY2, 2) );
-		distMin = Math.min(dist1, dist2);
+		distMin = Math.min(dist1, distMin);
+		dist1 = Math.sqrt( Math.pow(lineX3 - polygonX2, 2) + Math.pow(lineY3 - polygonY2, 2) );
+		distMin = Math.min(dist1, distMin);
 
 		dist1 = Math.sqrt( Math.pow(lineX3 - polygonX3, 2) + Math.pow(lineY3 - polygonY3, 2) );
-		dist2 = Math.sqrt( Math.pow(lineX3 - polygonX4, 2) + Math.pow(lineY3 - polygonY4, 2) );
-		distMin = Math.min(dist1, dist2);
+		distMin = Math.min(dist1, distMin);
+		dist1 = Math.sqrt( Math.pow(lineX3 - polygonX4, 2) + Math.pow(lineY3 - polygonY4, 2) );
+		distMin = Math.min(dist1, distMin);
 		
 		// Print out the results
 		System.out.println("The shortest distance is " + distMin + " units");
 		
 		// test to see if the polygon is closed
 		if(polygonX1 == polygonX4 && polygonY1 == polygonY4) {
-			System.out.println("The polygon is closed.");
+			System.out.println("The polygon is closed");
 		} else {
-			System.out.println("The polygon is a polyline.");
+			System.out.println("The polygon is a polyline");
 		}
 				
 		

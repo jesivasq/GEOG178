@@ -14,7 +14,14 @@ public class Test {
 		// Describe what a for loop and if statement is 
 		// in your own words
 		
-		
+		/*
+		 * A for loop is a way of repeating the same steps
+		 * over and over for a fixed number of times.
+		 * 
+		 * An if statment is a way of allowing different
+		 * things to happen in your program if different
+		 * conditions are met.
+		 */
 		
 		
 		// ----------------------------------------------

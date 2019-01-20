@@ -1,0 +1,71 @@
+Notes for Week 02:
+Methods and Object Orientation I
+
+
+in my homework: it would have been better to have a boolean to store whether or not the polygon was closed.
+
+operators map a statement to a truth value
+
+Strings are immutable sequences of characters
+
+all the primitive types start with lowercase
+
+cast manually by putting the datatype in parens before the number you're casting
+
+ascii 65 is A
+97 is a
+
+The IPO model: "Input, Processing, Output"
+
+system view is the black box
+good programming happens at the interface view
+so that it's clear what the blackbox takes and what it gives back-- that's the interface (e.g. API)
+
+Method: it groups a sequence of instructions and assigns a name to them, e.g. for reusability
+
+in java: modifiers, return types, the method's name, a list of parameters (if any), exception, and the body
+
+public static void main(String[] args){
+	// the above is called the signature of the method
+}
+
+Methods have to be defined outside of th emain method
+
+you can't have methods inside each other
+
+Arrays
+double[] bb = {1,5,5,7};
+int[] tuple = new int[2];
+
+methods and vars can be restricted in their visibility
+			class	pkg		subclas		world
+public		Y 		Y 		Y 			Y
+protected	Y 		Y       Y           N
+no modifier
+private
+
+
+static: use a method w/o using an object
+
+Objects are instances of Classes
+
+Construtor has the same name as the class (but it's a function)
+
+variables defined outside of any method are accessible by all methods (~inside the class); called member variables.
+
+'this' means I'm asking myself, the me who called the function
+
+we don't typically access variables directly; instead we use getters and setters
+
+The class name and the file name have to match!
+
+The static keyword used in method signatures is used to call a method on the class, not the object level
+
+Read chapter 4. Define class Point and BoundingBox, add a distance method, isInside method; test it.
+
+****Everything in the same package is visible to each other****
+
+Call by Reference and Call by Value
+Objects: java passes a reference to the object--> it changes the object
+
+

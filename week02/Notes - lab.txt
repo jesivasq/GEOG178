@@ -1,0 +1,27 @@
+Notes - lab
+Tue 22 Jan
+
+Package: collection of pieces of code that can be share together
+
+Public: This declares public adccess to a member across a package
+
+Arrays
+------------
+a collection of the same type of variables together
+java is 0-indexed
+int[] testArray = new int[10];
+
+Java as an OOP
+--------------
+Objec has staes and behaviors
+- states are coditions
+- behaviors are actions
+
+Classes are a high-level summary of each individual object
+
+Point: has an x and a y
+Line: has at least 2 points
+
+
+
+

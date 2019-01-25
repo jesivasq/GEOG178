@@ -1,0 +1,138 @@
+Notes
+Thu 24 Jan
+
+recap of class and methods
+classes are templates for objects
+they specify how objects are constructed
+
+Objects are instances of classes
+Objects are individuals
+
+a method groups a sequence of instructions and assigns a name to them, e.g. for reusability
+
+everything but the body is called the signature: the art of programming often boils down to well-defined signatures.
+
+static means when you call a class on the class level rather than on the instance level
+e.g. all methods in the Math package are static
+
+Call by reference: all classes are passed by reference (the point in memory where it is stored); when you pass a primitive into a function, you pass by value-- the primitive doesn't change.
+
+------------
+PACKAGES
+------------
+a package is a grouping of related types providing access protection and name space management.
+Note that types refers to classes, interfaces, enumerations, and annotation types.
+
+We bundle together things that we think belong together. for instance, all math in java goes into the Java Math package
+
+-------------
+Keywords public, protected, private (and no modifier)
+
+in this class, we're only going to use public and private
+Private means only the class can access it, not the package, subclass, or world
+
+You want to hide it so you can be in full control of what's happening. Think about writing a banking application: you'd have methods that can withdraw money. You don't want there to be access to the variable that stores how much money is in the account. It shouldn't be changeable from outside your method.
+
+---------
+Member variables defined outside of any method are accessible by all methods inside the same class.
+member vars == global vars
+
+scope and visibility
+scope: lifetime
+visible: ohhh... in a method, if you name a parameter the same as a global var, you can only see the global by using this.foo
+
+
+static int a = 42. Static things don't have instances. So if you make a static var, you have to access it in a method by using the class name. 
+
+to make a constant, use final
+private final int foo = 4;
+
+-----------
+Overriding
+-----------
+you have the exact same method signature and you create a different version of it.
+
+So, when Java sees something in the prinln funciton, it calls the toString() method. For our Point class, it prints out the memory position.
+
+Inside our point class, we can create a method that is called the same as the toString method, and ours will override the sysout version.
+
+public String toString() {
+	return "(" + x + ", " + y + ")";
+}
+
+------------
+
+look up GAME OF LIFE -- re: cellular automata
+
+------------
+
+Thread.sleep(1500); // to create a delay
+
+------------
+
+arrayList data structure
+
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+Iterator i = arrayList.iterator();
+while( i.hasNext() ){
+	// do stuff
+}
+
+
+you can add and remove things from a list
+.add for adding somewhere,
+.append for adding at the end
+
+We are going to use an array of pointers to memory
+
+
+ArrayList<Building> b = new ArrayList<Building>();
+
+delegation:
+using a data structure as an analog operation for something in the real world
+
+e.g. using an arraylist for a polyline
+
+create a class Switch
+create a class LightBulb
+the lifetime is shortened every time it's turned on or off
+it's broken when the lifetime equals 0
+you can still flip the switch if the light is broken, the light just won't turn on
+implement a new light bulb that will stay in sync with the switch (i.e. if the switch is on, the light bulb turns on when it is installed).
+
+isState (is it on or off)
+there are already-named methods in the powerpoint
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

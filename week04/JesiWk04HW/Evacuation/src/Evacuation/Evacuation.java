@@ -19,7 +19,13 @@ public class Evacuation {
 			System.out.println(i.next().toString());
 		
 		ArrayList<Building> b = new ArrayList<Building>();
-
+		b.add(new Farm(new Point(1,2)));
+		b.add(new Store(new Point(3,4)));
+		b.add(new Hospital(new Point(5,6)));
+		
+		Iterator buildings = b.iterator();
+		while(buildings.hasNext())
+			System.out.println(buildings.next().toString());
 		
 		
 	}

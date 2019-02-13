@@ -1,0 +1,8 @@
+Notes Lab 
+Tue 12 Feb
+
+UML
+outer ring is counter-clockwise
+
+Eclipse Papyrus plugin will let you generate a UML diagram
+

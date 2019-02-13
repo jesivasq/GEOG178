@@ -1,7 +1,5 @@
 package structure;
 
-import java.util.*;
-
 public class Test {
 
 	public static void main(String[] args) {
@@ -50,10 +48,33 @@ public class Test {
 		System.out.println("");
 		
 		// test bounding box
-		
+		BoundingBox bb = new BoundingBox(p1.getX(), p1.getY(), 30, 40);
+		if( bb.isInside(p2)) {
+			System.out.println("Point 2 is inside the bounding box.");
+		} else {
+			System.out.println("Point 2 is outside the bounding box.");
+		}
+		Point p4 = new Point(0,0);
+		if(bb.isInside(p4)) {
+			System.out.println("Point 4 is inside the bounding box.");
+		} else {
+			System.out.println("Point 4 is outside the bounding box.");
+		}
+		System.out.println("");
 		
 		// Test point buffer
-
+		Point p5 = new Point(5, 5);
+		PointBuffer pb = new PointBuffer(p5, 5);
+		if( pb.isInside(p5)) {
+			System.out.println("p5 is inside the point buffer.");
+		} else {
+			System.out.println("p5 is outside the point buffer.");
+		}
+		if( pb.isInside(p4)) {
+			System.out.println("p4 is inside the point buffer.");
+		} else {
+			System.out.println("p4 is outside the point buffer.");
+		}
 	}
 
 }

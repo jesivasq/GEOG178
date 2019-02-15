@@ -1,0 +1,58 @@
+ctrl + o to auto-import whatever you need for ArrayList 
+(or whatever you add)
+
+0 dimensions: point
+1 dim: line
+2 dim: square
+3 dim: cube
+
+from 1D, we can talk length
+from 2D, we can talk area
+from 3D, we can talk volume
+
+AWT
+Advanced Windowing Toolkit
+
+don't use the AWT rectangle (et al.) class; use your own (you need doubles, awt only uses int (pixel-space))
+
+awt is out-dated but some of the primitives are still used for drawing lines and points and such
+
+swing is the extended version: javax--> the x is for extended
+
+swing is the status quo. it's what we're going to use
+
+JavaFX is in xml and is intended to replace swing; we're not using it b/c a) practice java and b) don't learn xml
+
+you're going to want to look for your own layout managers if you don't want to use the default flow version
+
+create the panel(s) first and then the frame after
+
+JFrame holds a JPanel to which we add canvas, buttons, etc.
+
+paintComponent() method gives you access to the Graphics element
+
+call repaint() to get java to call paintComponent() again
+
+frame.pack() --> after you stick the panel in the frame, this makes the frame to be the size of the panel
+
+ALWAYS:
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+we're going to override paintComponent()
+
+drawOval --> an outline
+fillOval --> a filled-in oval
+
+java assumes you start at the upper-left edge-- even for the oval/ circle
+
+
+
+
+
+
+
+
+
+
+
+

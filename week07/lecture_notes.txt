@@ -1,0 +1,135 @@
+lecture notes
+
+Model View Controller
+
+Ripley's K statistics
+
+
+Events are changes in state
+events are received by listeners
+all listeners are interfaces. oh. you have to implement them yourself. tell it what happens when they hear an event.
+
+your gui extends JPanel and implements ActionListener
+
+addMouseListener(this); // "this" is just your own class  -- OR --
+gui.addMouseMotionListener(gui); // if you do this from the main method
+
+getX() is relative to the corner of your component
+
+getXOnScreen() is relative to the corner of the frame
+
+you need to initialize things with meaningful values before the program starts
+
+File REader
+	FileReader input = new FileReader("path/file.txt");
+	BufferedReader bufRead = new BufferedREader(input);
+
+	byte reader (char) or line reader
+	while loop
+
+	bufRead.closer();
+	input.close();
+
+*****************************************************
+*** ALWAYS CLOSE THE FILE AND THE BUFFER AT THE END. OTHERWISE JAVA MIGHT CORRUPT IT. ***
+*****************************************************
+
+Buffered image reader
+
+
+----------------------------------------------------
+MODEL VIEW CONTROLLER or Where to Place What
+
+gang of four Software Design Patterns -- like, 27 patterns for how to write proper code
+
+answer to the question of why the points changed colors. 
+
+MVC 
+reading the file forms the model
+the part where we're rendering it, that's the view
+taking the string and plotting it on the screen
+
+logic M
+user interface V
+interaction C
+
+Model never talks to View
+nor vice versa
+
+They both talk to the controller
+
+ENCAPSULATION
+hide implementation details behind interface descriptions
+
+only expose your public methods as your interface
+everything inside is a black box
+
+model is black box to view and vice versa
+they don't depend on each other
+
+model: abstraction of the real world
+application-driven abstraction of the real world
+which objects are available
+what behavior they offer
+what attributes they offer
+Takes feedback and updates from the controllers
+when the model changes, it triggers the controller, who says okay, now it's time to redraw the panel
+Deciding the buildings will be points, etc.-- this is the model
+we communicate our models by signatures
+The model is hidden and you're only exposing the interfaces (e.g. the signatures on your methods)
+but nobody knows what goes on on the inside
+
+VIEW
+renders the model based on the user interface
+GUI, Console (system.out.println)
+gives access to interaction via components such as buttons
+binds components to controller, e.g. addListener --> the conroller will tell it what to do, but the view adds the listener
+takes feedback and updates from the controller
+
+CONTROLLER
+does the talking between the model and the view
+listens to the view components and listens to the model (like when you add points to a polyline, in our drawing model)
+the task of the computer is to keep the model and the view in sync and react to all user feedback
+
+the core idea: it's a best practice guide that tells you which part of your software goes where
+
+onmouseclick do this, onmousescroll do something else--> this is the controller
+
+in the initial color problem we had today, the color was in the view instead of in the model
+
+the view has no memory: the model remembers.
+
+sample: a known location represented as a point
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

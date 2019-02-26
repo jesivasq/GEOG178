@@ -1,12 +1,16 @@
 package hwWk7;
 
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+//import java.awt.FlowLayout;
+import java.awt.event.*;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
+//import javax.swing.JButton;
+//import javax.swing.JRadioButton;
+//import javax.swing.JFrame;
 
 import hwWk7.MyPanel;
 import hwWk7.Point;
@@ -15,6 +19,7 @@ public class HwWk7 implements ActionListener{
 
 	
 	ListenerPanel foo;
+	//JRadioButton rb1, rb2;
 	
 	HwWk7(){
 		
@@ -34,8 +39,20 @@ public class HwWk7 implements ActionListener{
 		btnClose.addActionListener(this);
 		btnReset.addActionListener(this);
 		
-		// add the button to the frame
-		jfrm.add(btnClose);
+//		rb1 = new JRadioButton();
+//		rb2 = new JRadioButton();
+//		ButtonGroup g1 = new ButtonGroup();
+//		
+//		rb1.setText("Waypoints");
+//		rb2.setText("POIs");
+//		
+//		// add the button to the frame
+//		//jfrm.add(btnClose);
+//		jfrm.add(rb1);
+//		jfrm.add(rb2);
+//		g1.add(rb1);
+//		g1.add(rb2);
+//		rb1.setSelected(true);
 		
 		foo.addMouseListener(foo);
 		foo.addMouseMotionListener(foo);

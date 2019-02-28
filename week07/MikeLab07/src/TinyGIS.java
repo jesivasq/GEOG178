@@ -17,7 +17,7 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 
 	// array list for user-generated points
 	private ArrayList<POI> poi = new ArrayList<POI>();
-	private ArrayList<Point> point = new ArrayList<Point>();
+	private ArrayList<Point> waypoint = new ArrayList<Point>();
 	
 	
 	// image
@@ -54,14 +54,24 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 	public void paintComponent(Graphics g) {
 		g.drawImage(campus, 0, 0, this);
 		
+		// draw the POIs
 		for(int i = 0; i < poi.size(); i++) {
 			g.setColor(Color.red);
 			g.fillOval((int)poi.get(i).getCenter().getX()-5, (int)poi.get(i).getCenter().getY()-5, 10, 10);
-			if(labelFlag) {
+			if(labelFlag || poi.get(i).isVisited()) {
 				g.setColor(Color.black);
 				g.setFont(new Font("default", Font.BOLD, 16));
 				g.drawString(poi.get(i).getName(), (int)poi.get(i).getCenter().getX() + 10, (int)poi.get(i).getCenter().getY());
 				
+			}
+		}
+		
+		// draw the waypoints; connect with lines if there's more than 1
+		for(int j = 0 ; j < waypoint.size(); j++) {
+			g.setColor(Color.black);
+			g.fillOval((int)waypoint.get(j).getX()-5, (int)waypoint.get(j).getY()-5, 10, 10);
+			if(j > 0 ) {
+				g.drawLine((int)waypoint.get(j-1).getX(), (int)waypoint.get(j-1).getY(), (int)waypoint.get(j).getX(), (int)waypoint.get(j).getY());
 			}
 		}
 		
@@ -88,15 +98,35 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 		// right-click is button=3,
 		// left-click is button = 1;
 		// e.getButton()
-		System.out.println(e.getButton());
+		//System.out.println(e.getButton());
 		
 		
 		Point tmp = new Point(e.getX(), e.getY());
-		POI tmpPOI = new POI(tmp, buff, "Unnamed", false);
-		String name = JOptionPane.showInputDialog("Enter POI Name: ");
-		tmpPOI.setName(name);
-		poi.add(tmpPOI);
 		
+		// if it's a POI click, add to POI array
+		if(e.getButton() == 1) {
+			POI tmpPOI = new POI(tmp, buff, "Unnamed", false);
+			String name = JOptionPane.showInputDialog("Enter POI Name: ");
+			tmpPOI.setName(name);
+			poi.add(tmpPOI);
+		}
+		else if( e.getButton() == 3) {	
+			// if it's a waypoint click, add to waypoints
+			waypoint.add(tmp);
+			
+			// check to see if it's close enough to turn the label on
+			for(int i = 0; i < poi.size(); i++) {
+				if(poi.get(i).isInside(tmp)) {
+					System.out.println("is inside buffer");
+					poi.get(i).setVisited(true);
+				} else {
+					// shut it off if it's not the currently visited point
+					poi.get(i).setVisited(false);
+				}
+			}
+		}
+		
+		// for both
 		repaint();
 		
 

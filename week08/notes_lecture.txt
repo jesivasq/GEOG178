@@ -1,0 +1,88 @@
+four cornerstones of oop
+abstraction
+encapsulation
+polymorphism
+inheritance
+
+serializing an object in its current state in a binary encoding
+
+---------------------
+
+import java.io.Serializable;
+
+public class POI etends Point implements Seializable{
+	...
+}
+
+--------------------
+
+
+a Marker interface: you don't have to override any method
+tells java what you expect java to provide as functionality for your class. e.g. java will come up with everything you need so you can load and save any objects you create
+
+the super class also has to be serializable
+e.g. if Point class has x, y coords and POI extends Point and adds name, if you serialize POI you'll only get names
+
+you have to cast objects that you read in...?
+otherwise you only get the lowest level superclass ...?
+
+JFileChooser is a swing component
+creates the entrie dialog for you
+
+Exception Handling
+try and catch and finally
+throw
+
+not used for compile-time errors (errors in yoiur programming, like if you ask for more iterations than a list can provide)-- > it's for run-time errors
+
+"if" is for compile time, "try" is for run-time-- run-time is out of your control
+
+finally
+for closing output stream and file stream
+
+catch(IOException ex){
+	sysout ex.getMessage()
+}
+
+
+to add a throw to a method
+public void foo throws IOException {
+	...
+}
+make it somebody else's problem -- the person who calls that method has to deal with the exception
+
+=======================================
+
+KeyEvent.VK_LEFT
+KeyEvent.VK_DOWN
+
+
+setFocusable(true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
+import java.io.Serializable;
 
-
-public class Point implements Geometry{
+public class Point implements Geometry, Serializable {
 	// -------------
 		// Attributes
 		// -------------

@@ -1,6 +1,6 @@
+import java.io.Serializable;
 
-
-public class Circle implements Geometry {
+public class Circle implements Geometry, Serializable {
 	Point center;
 	double radius;
 	

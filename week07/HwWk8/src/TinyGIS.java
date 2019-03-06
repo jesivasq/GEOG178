@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.awt.*; 
 import javax.swing.*; 
+import java.io.*;
 
 
 public class TinyGIS extends JPanel implements MouseListener, ActionListener {
@@ -29,9 +30,10 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 	private BufferedImage campus;
 	private int buff = 10;
 	
-	// button
+	// buttons
 	private JButton lab = new JButton("Turn labels on");
 	private boolean labelFlag = false;
+	private JButton clr = new JButton("Clear");
 	
 	// save file
 	SaveFile saveFile;
@@ -44,7 +46,9 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 		// every panel we create will have a mouse listener
 		this.addMouseListener(this);
 		add(lab);
+		add(clr);
 		this.lab.addActionListener(this);
+		this.clr.addActionListener(this);
 	}
 	
 	
@@ -165,10 +169,47 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 			} else {
 				lab.setText("Turn labels on");
 			}
+		} else if(e.getSource() == clr ) {
+			// then the user clicked the Clear button
+			poi.clear();
+			waypoint.clear();
+			repaint();
+			
 		} else if(e.getActionCommand().equalsIgnoreCase("Open...")) {
 			// the user clicked Open on the file menu
 			System.out.println("Open file");
 			// do open file things
+			
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setDialogTitle("Open");
+			int fileChooserResult = fileChooser.showOpenDialog(getParent());
+			
+			if( fileChooserResult == JFileChooser.APPROVE_OPTION) {
+				File openPath = fileChooser.getSelectedFile();
+				
+				try {
+					FileInputStream fileIn = new FileInputStream(openPath.getAbsolutePath());
+					ObjectInputStream objIn = new ObjectInputStream(fileIn);
+					
+					saveFile = (SaveFile) objIn.readObject();
+					poi = saveFile.getPoi();
+					waypoint = saveFile.getWaypoint();
+					
+					objIn.close();
+					fileIn.close();
+					
+					repaint();
+					
+				} catch (FileNotFoundException i ) {
+					System.out.println("Open file failed: FileNotFoundException");
+				} catch (IOException i ) {
+					System.out.println("Open file failed: IOException");
+					System.out.println(i.toString());
+				} catch (ClassNotFoundException i) {
+					System.out.println("Open file failed: ClassNotFoundException");
+				}
+				
+			} // if the user goes through with the open
 			
 		} else if(e.getActionCommand().equalsIgnoreCase("Save...")) {
 			// the user clicked Save on the file menu
@@ -182,7 +223,7 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 			
 			int fileChooserResult = fileChooser.showSaveDialog(getParent());
 			// don't have access to the frame because this is being called from within my JPanel;
-			//   trying getParent() -Jesi
+			//   trying getParent(); seems to work -Jesi
 			
 			if(fileChooserResult == JFileChooser.APPROVE_OPTION) {
 				File savePath = fileChooser.getSelectedFile();
@@ -191,8 +232,8 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 					FileOutputStream fileOut = new FileOutputStream(savePath.getAbsolutePath());
 					ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
 					
-				//	saveFile = new SaveFile(poi, waypoint);
-					//objOut.writeObject(saveFile);
+					saveFile = new SaveFile(poi, waypoint);
+					objOut.writeObject(saveFile);
 					
 					objOut.close();
 					fileOut.close();
@@ -202,9 +243,9 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 					//fileSaved();
 					
 				} catch (IOException i) {
-					System.out.println("Save file failed");
+					System.out.println("Save file failed: " + i.toString());
 					JOptionPane.showMessageDialog(getParent(), "There was an error in saving your data.", "Save Error", JOptionPane.ERROR_MESSAGE);
-				}
+				} 
 			}
 			
 		}

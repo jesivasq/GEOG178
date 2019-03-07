@@ -230,7 +230,8 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 					
 					saveFile = (SaveFile) objIn.readObject();
 					poi = saveFile.getPoi();
-					waypoint = saveFile.getWaypoint();
+					node = saveFile.getNode();
+					way = saveFile.getWay();
 					
 					objIn.close();
 					fileIn.close();
@@ -239,11 +240,14 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 					
 				} catch (FileNotFoundException i ) {
 					System.out.println("Open file failed: FileNotFoundException");
+					JOptionPane.showMessageDialog(getParent(), "There was an error opening the file.", "File Error", JOptionPane.ERROR_MESSAGE);
 				} catch (IOException i ) {
 					System.out.println("Open file failed: IOException");
 					System.out.println(i.toString());
+					JOptionPane.showMessageDialog(getParent(), "There was an error opening the file.", "File Error", JOptionPane.ERROR_MESSAGE);
 				} catch (ClassNotFoundException i) {
 					System.out.println("Open file failed: ClassNotFoundException");
+					JOptionPane.showMessageDialog(getParent(), "There was an error opening the file.", "File Error", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			} // if the user goes through with the open
@@ -269,7 +273,7 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 					FileOutputStream fileOut = new FileOutputStream(savePath.getAbsolutePath());
 					ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
 					
-					saveFile = new SaveFile(poi, waypoint);
+					saveFile = new SaveFile(poi, way, node);
 					objOut.writeObject(saveFile);
 					
 					objOut.close();

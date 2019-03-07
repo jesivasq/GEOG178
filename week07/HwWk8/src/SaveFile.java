@@ -5,13 +5,18 @@ import java.util.ArrayList;
 
 public class SaveFile implements Serializable{
 	private ArrayList<POI> poi = new ArrayList<POI>();
-	private ArrayList<Point> waypoint = new ArrayList<Point>();
+	private ArrayList<Way> way = new ArrayList<Way>();
+	private ArrayList<PointBuffer> node = new ArrayList<PointBuffer>();
 	
-	public SaveFile(ArrayList<POI> poi, ArrayList<Point> waypoint) {
+	// Constructor
+	public SaveFile(ArrayList<POI> poi, ArrayList<Way> way, ArrayList<PointBuffer> node) {
+		super();
 		this.poi = poi;
-		this.waypoint = waypoint;
+		this.way = way;
+		this.node = node;
 	}
 
+	// Getters and Setters
 	public ArrayList<POI> getPoi() {
 		return poi;
 	}
@@ -20,13 +25,25 @@ public class SaveFile implements Serializable{
 		this.poi = poi;
 	}
 
-	public ArrayList<Point> getWaypoint() {
-		return waypoint;
+	public ArrayList<Way> getWay() {
+		return way;
 	}
 
-	public void setWaypoint(ArrayList<Point> waypoint) {
-		this.waypoint = waypoint;
+	public void setWay(ArrayList<Way> way) {
+		this.way = way;
 	}
+
+	public ArrayList<PointBuffer> getNode() {
+		return node;
+	}
+
+	public void setNode(ArrayList<PointBuffer> node) {
+		this.node = node;
+	}
+	
+	
+
+
 	
 	
 	

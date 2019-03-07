@@ -24,11 +24,15 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 	// array list for user-generated points
 	private ArrayList<POI> poi = new ArrayList<POI>();
 	private ArrayList<Point> waypoint = new ArrayList<Point>();
-	
+	private ArrayList<Way> way = new ArrayList<Way>();
+	private ArrayList<PointBuffer> node = new ArrayList<PointBuffer>();
+	private boolean isFirst = true; // for the Way array list
+	int buffer = 20;
+	Point holding;
 	
 	// image
 	private BufferedImage campus;
-	private int buff = 10;
+	private int buff = 20;
 	
 	// buttons
 	private JButton lab = new JButton("Turn labels on");
@@ -78,15 +82,25 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 			}
 		}
 		
-		// draw the waypoints; connect with lines if there's more than 1
-		for(int j = 0 ; j < waypoint.size(); j++) {
+//		// draw the waypoints; connect with lines if there's more than 1
+//		for(int j = 0 ; j < waypoint.size(); j++) {
+//			g.setColor(Color.black);
+//			g.fillOval((int)waypoint.get(j).getX()-5, (int)waypoint.get(j).getY()-5, 10, 10);
+//			if(j > 0 ) {
+//				g.drawLine((int)waypoint.get(j-1).getX(), (int)waypoint.get(j-1).getY(), (int)waypoint.get(j).getX(), (int)waypoint.get(j).getY());
+//			}
+//		}
+//		
+		
+		// draw the nodes and the ways
+		for(int i = 0; i < node.size(); i++) {
 			g.setColor(Color.black);
-			g.fillOval((int)waypoint.get(j).getX()-5, (int)waypoint.get(j).getY()-5, 10, 10);
-			if(j > 0 ) {
-				g.drawLine((int)waypoint.get(j-1).getX(), (int)waypoint.get(j-1).getY(), (int)waypoint.get(j).getX(), (int)waypoint.get(j).getY());
-			}
+			g.fillOval((int) node.get(i).getCenter().getX()-5, (int) node.get(i).getCenter().getY()-5, 10, 10);
 		}
 		
+		for(int j = 0; j < way.size(); j++) {
+			g.drawLine((int) way.get(j).getP1().getX(), (int) way.get(j).getP1().getY(), (int) way.get(j).getP2().getX(), (int)way.get(j).getP2().getY());
+		}
 		
 		
 	}
@@ -107,7 +121,7 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// using e.getButton():
-		// 	right-click is button=3, WAYPOINT
+		// 	right-click is button=3, NODE
 		// 	left-click is button = 1; POI
 				
 		Point tmp = new Point(e.getX(), e.getY());
@@ -120,19 +134,40 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 			poi.add(tmpPOI);
 		}
 		else if( e.getButton() == 3) {	
-			// if it's a waypoint click, add to waypoints
-			waypoint.add(tmp);
 			
-			// check to see if it's close enough to turn the label on
-			for(int i = 0; i < poi.size(); i++) {
-				if(poi.get(i).isInside(tmp)) {
-					System.out.println("is inside buffer");
-					poi.get(i).setVisited(true);
-				} else {
-					// shut it off if it's not the currently visited point
-					poi.get(i).setVisited(false);
+			// check to see if we should add it:
+			// automatic yes if it's the 1st pt in the array or the second pt in a set
+			// if it's the 1st pt in not the 1st set, it has to snap to an existing point
+			if(node.isEmpty() ) {
+				node.add(new PointBuffer(tmp, buffer));
+				isFirst = false;
+				System.out.println("first node created");
+			} else if (node.size() == 1 ) {
+				node.add(new PointBuffer(tmp, buffer));
+				way.add(new Way(node.get(0).getCenter(), node.get(1).getCenter()));
+				isFirst = true;
+				System.out.println("second node created");
+			} else if (!isFirst) {
+				node.add(new PointBuffer(tmp, buffer));
+				way.add(new Way(tmp, holding));
+				isFirst = true;
+			}
+			
+			
+			else {
+				// check to see if it's within the buffer of an existing point
+				int index = -1;
+				for(int i = 0 ; i < node.size(); i++) {
+					if(node.get(i).isInside(tmp)) {
+						index = i;
+					}
+				}
+				if(index >= 0) {
+					holding = node.get(index).getCenter();
+					isFirst = false;
 				}
 			}
+			
 		}
 		
 		// for both
@@ -173,6 +208,8 @@ public class TinyGIS extends JPanel implements MouseListener, ActionListener {
 			// then the user clicked the Clear button
 			poi.clear();
 			waypoint.clear();
+			node.clear();
+			way.clear();
 			repaint();
 			
 		} else if(e.getActionCommand().equalsIgnoreCase("Open...")) {

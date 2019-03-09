@@ -1,0 +1,21 @@
+the buffer size determines the minimum resolution
+
+you can use return in a void method to get out of it
+
+rick an my hw didn't take into account snapping the 2nd point to an existing node
+
+Dijkstra algorithm -- find the shortest path
+
+external libraries added as JAR files
+
+add the JAR file, add it to your build path
+
+Apache's Java-Commons is trustworthy and well-documented
+
+"just take it as 'we have been brave, and failed'"
+
+XChart is a Java charting library
+
+Double.valueOf(record[1]);
+
+

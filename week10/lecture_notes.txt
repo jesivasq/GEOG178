@@ -1,0 +1,87 @@
+hw: should have checked to see if mouse was in a bounding box to see if we should have checked all 2000 points
+
+model view controller
+
+abstract data types:
+defines just the operations 
+
+in java, those are implemented as interfaces
+
+Collection is the interface that tells you you can run an iterator
+
+ArrayList
+all lists can be cleared --> there's a clear() method in the abstract List ADT (abstract data type)
+
+the empty template that tells you how can i interact with lists
+
+Linked List
+e.g. singly linked list, just a pointer to the next element
+
+Big O notation: array list, access O(1), insert/remove O(n)
+Linked List access: O(n) --> because you have to go like a cassette tape, from the beginning. you can't jump like a CD
+
+fast and frequent access to a random element? Array List
+fast and frequent insertion and removal of element? Linked List
+
+LIFO: stack
+FIFO: queue
+
+More important than iterating-- equally important to iterating:
+you need to be able to sort
+
+
+polymorphism: you need to be able to overwrite functions
+
+sortable and comparable
+some polymorphic definition of greater and less than
+
+space-filling curve
+translate a problem of 2D space into 1D space
+you index your data according to a space-filling curve --> see the slide for examples
+no space-filling curve is perfect; some are better than others for specific applications, your application
+
+quadtree compression as an index
+
+trees are the key index structure
+
+Observer / Observable
+Observer: the instance to be notified whenever the state of an observable object has changed
+
+Observable (class): an instance that broadcasts changes of its state to registered observer instances
+
+Abstract class:
+you can write out some of the methods and not write out some of them, as opposed to an interface where none of them are written out
+
+for( type variable: collection){
+	your loop code
+}
+
+Final
+understanding listeners
+understaning method signatures
+name at least some of the widgets and components in the swing family
+control structures
+implement a building class
+understanding the difference btw classes and interfaces
+threads
+understanding public, private etc.
+control for exceptions
+model view controller
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
